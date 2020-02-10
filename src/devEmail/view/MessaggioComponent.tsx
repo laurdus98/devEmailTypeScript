@@ -28,7 +28,7 @@ export function MessaggioComponent(props: IMessaggioProps) {
 			<Paper className={classes.paper}>
 				<Grid container wrap="nowrap" spacing={2}>
 					<Grid item>
-						<Avatar>{messaggio.mail.username.substr(0, 1)}</Avatar>
+						<Avatar>{messaggio.messaggi.username.substr(0, 1)}</Avatar>
 					</Grid>
 					<Grid item xs zeroMinWidth>
 						<Typography noWrap>{message}</Typography>

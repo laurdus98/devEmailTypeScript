@@ -3,5 +3,8 @@ import { Mail } from './Mail';
 export type Messaggio = {
 	id?: any;
 	titolo: string;
-	mail: Mail;
+	updateAt?: string;
+	updateBy?: string;
+	contenuto?: string;
+	messaggi: Mail;
 };

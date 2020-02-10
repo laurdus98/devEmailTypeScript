@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState, Fragment } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Grid, Paper, Typography, ButtonBase } from '@material-ui/core/';
 import { IMailProps } from './../interfaces/IMailProps';
+import { MessaggioComponent } from './MessaggioComponent';
+import { Messaggio } from './../model/Messaggio';
+import { Mail } from '../model/Mail';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -29,41 +32,70 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export function MailComponent(props: IMailProps) {
 	const classes = useStyles();
-	const { logo, mail }: IMailProps = props;
+	let { logo, mail, listaMessaggi }: IMailProps = props;
+	const [
+		open,
+		setOpen
+	] = useState(false);
+
+	listaMessaggi = listaMessaggi.filter((el: Messaggio, i: any): Messaggio | any | undefined => {
+		const { username }: Mail = mail;
+		if (el.messaggi.username === username) {
+			return listaMessaggi[i];
+		}
+		return false;
+	});
+
 	return (
-		<div className={classes.root}>
-			<Paper className={classes.paper}>
-				<Grid container spacing={2}>
-					<Grid item>
-						<ButtonBase className={classes.image}>
-							<img className={classes.img} alt="complex" src={logo} />
-						</ButtonBase>
-					</Grid>
-					<Grid item xs={12} sm container>
-						<Grid item xs container direction="column" spacing={2}>
-							<Grid item xs>
-								<Typography gutterBottom variant="subtitle1">
-									{mail.username}
-								</Typography>
-								<Typography variant="body2" gutterBottom>
-									Full resolution 1920x1080 • JPEG
-								</Typography>
-								<Typography variant="body2" color="textSecondary">
-									{mail.username}
-								</Typography>
+		<Fragment>
+			<div className={classes.root}>
+				<Paper className={classes.paper}>
+					<Grid container spacing={2}>
+						<Grid item>
+							<ButtonBase className={classes.image}>
+								<img className={classes.img} alt="complex" src={logo} />
+							</ButtonBase>
+						</Grid>
+						<Grid item xs={12} sm container>
+							<Grid item xs container direction="column" spacing={2}>
+								<Grid item xs>
+									<Typography gutterBottom variant="subtitle1">
+										{mail.username}
+									</Typography>
+									<Typography variant="body2" gutterBottom>
+										Hai parlato con {mail.username}
+									</Typography>
+									<Typography variant="body2" color="textSecondary">
+										{mail.username}
+									</Typography>
+								</Grid>
+								<Grid item>
+									<Typography
+										variant="body2"
+										style={{ cursor: 'pointer' }}
+										onClick={() => {
+											setOpen(!open);
+										}}
+									>
+										Apri messaggi-mail
+									</Typography>
+								</Grid>
 							</Grid>
 							<Grid item>
-								<Typography variant="body2" style={{ cursor: 'pointer' }}>
-									Remove
-								</Typography>
+								<Typography variant="subtitle1">{mail.username}</Typography>
 							</Grid>
 						</Grid>
-						<Grid item>
-							<Typography variant="subtitle1">{mail.username}</Typography>
-						</Grid>
 					</Grid>
+				</Paper>
+			</div>
+			{open ? (
+				<Grid container direction="row" justify="center" alignItems="center">
+					Messaggio/i {listaMessaggi.length}
+					{listaMessaggi.map((el: Messaggio, i: any) => <MessaggioComponent messaggio={el} key={i} />)}
 				</Grid>
-			</Paper>
-		</div>
+			) : (
+				''
+			)}
+		</Fragment>
 	);
 }

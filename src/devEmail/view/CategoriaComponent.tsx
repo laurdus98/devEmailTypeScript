@@ -5,8 +5,8 @@ import { ICategoriaProps } from './../interfaces/ICategoriaProps';
 export function CategoriaComponent(props: ICategoriaProps) {
 	const { categoria }: ICategoriaProps = props;
 	return (
-		<Grid container direction="column-reverse" justify="space-evenly" alignItems="flex-start">
-			{categoria.nome}
+		<Grid container direction="column" justify="flex-start" alignItems="flex-start">
+			{categoria.tipo}
 		</Grid>
 	);
 }

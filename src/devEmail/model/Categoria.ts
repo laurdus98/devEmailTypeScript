@@ -1,5 +1,7 @@
+import { Messaggio } from './Messaggio';
+
 export enum CategoriaEnum {
-	SocialNetwork = 'Social Network',
+	SocialNetwork = 'SocialNetwork',
 	Promozioni = 'Promozioni',
 	Sport = 'Sport',
 	CronacaNera = 'Cronaca Nera',
@@ -8,5 +10,8 @@ export enum CategoriaEnum {
 
 export type Categoria = {
 	id?: any;
-	nome: CategoriaEnum;
+	updateAt?: string;
+	updateBy?: string;
+	tipo?: CategoriaEnum | string;
+	categoria: Messaggio;
 };
