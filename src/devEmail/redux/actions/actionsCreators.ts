@@ -30,7 +30,7 @@ export const fetchingMail: ActionCreator<
 	return async (dispatch: any) => {
 		dispatch(fetchingRequest());
 		try {
-			let response = await fetch('https://randomuser.me/api/?results=15');
+			let response = await fetch('https://localhost:9999/Mail');
 			let json = await response.json();
 			return dispatch(fetchingSuccess<Mail>(json));
 		} catch (error) {
