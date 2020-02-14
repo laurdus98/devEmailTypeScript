@@ -1,7 +1,5 @@
-import { ThunkAction } from 'redux-thunk';
 import { IGettingAction, IGettingSuccessAction, IGettingFailureAction } from './actions';
-import { ActionCreator } from 'redux';
-import { Mail } from '../../model/Mail';
+import { GETTING } from '../../environment/environment';
 
 export const fetchingRequest = (): IGettingAction => {
 	return {
@@ -27,17 +25,23 @@ export const fetchingFailure = (error: string): IGettingFailureAction => {
 	};
 };
 
-export const fetchingMail: ActionCreator<
-	ThunkAction<Promise<IGettingSuccessAction<Mail>>, Mail[], null, IGettingSuccessAction<Mail>>
-> = () => {
+// ActionCreator<
+// 	ThunkAction<Promise<IGettingSuccessAction<Mail>>, Mail[], null, IGettingSuccessAction<Mail>>
+// >
+
+export function fetching<T>(pathName: string) {
 	return async (dispatch: any) => {
 		dispatch(fetchingRequest());
 		try {
-			let response = await fetch('https://localhost:9999/Mail');
+			const { host, get } = GETTING;
+			let url = new URL(host);
+			url.pathname = pathName;
+			const { href } = url;
+			let response = await fetch(href, { method: get });
 			let json = await response.json();
-			return dispatch(fetchingSuccess<Mail>(json));
+			return dispatch(fetchingSuccess<T>(json));
 		} catch (error) {
 			return dispatch(fetchingFailure(error));
 		}
 	};
-};
+}

@@ -1,9 +1,11 @@
 import { IState } from '../redux/state/IState';
 
 export const mapState = (state: IState) => {
-	const { mail }: IState = state;
+	const { mail, categoria, messaggio }: IState = state;
 
 	return {
-		mail
+		mail,
+		categoria,
+		messaggio
 	};
 };

@@ -5,6 +5,6 @@ import { Categoria } from '../../model/Categoria';
 
 export type IState = {
 	readonly mail: GState<Mail>;
-	readonly messaggio?: GState<Messaggio>;
-	readonly categoria?: GState<Categoria>;
+	readonly messaggio: GState<Messaggio>;
+	readonly categoria: GState<Categoria>;
 };

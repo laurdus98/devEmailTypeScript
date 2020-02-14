@@ -22,13 +22,13 @@ const useStyles = makeStyles((theme: Theme) =>
 export function MessaggioComponent(props: IMessaggioProps) {
 	const classes = useStyles();
 	const { messaggio }: IMessaggioProps = props;
-	const message: string = messaggio.titolo;
+	const message: string = messaggio.contenuto;
 	return (
 		<div className={classes.root}>
 			<Paper className={classes.paper}>
 				<Grid container wrap="nowrap" spacing={2}>
 					<Grid item>
-						<Avatar>{messaggio && messaggio.messaggi.username.substr(0, 1)}</Avatar>
+						<Avatar>{messaggio.messaggi.updateBy.substr(0, 1)}</Avatar>
 					</Grid>
 					<Grid item xs zeroMinWidth>
 						<Typography noWrap>{message}</Typography>

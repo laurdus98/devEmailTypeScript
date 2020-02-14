@@ -9,9 +9,9 @@ export enum CategoriaEnum {
 }
 
 export type Categoria = {
-	id?: any;
-	updateAt?: string;
-	updateBy?: string;
-	tipo?: CategoriaEnum | string;
+	id: any;
+	updateAt: string;
+	updateBy: string;
+	tipo: CategoriaEnum;
 	categoria: Messaggio;
 };

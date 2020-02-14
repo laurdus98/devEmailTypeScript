@@ -32,15 +32,17 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export function MailComponent(props: IMailProps) {
 	const classes = useStyles();
-	let { logo, mail, listaMessaggi }: IMailProps = props;
+	const { logo, mail, listaMessaggi }: IMailProps = props;
 	const [
 		open,
 		setOpen
 	] = useState(false);
 
-	listaMessaggi = listaMessaggi.filter((el: Messaggio, i: any): Messaggio | any | undefined => {
-		const { username }: Mail = mail;
-		if (el.messaggi.username === username) {
+	[
+		...listaMessaggi
+	].filter((el: Messaggio, i: any): Messaggio | any => {
+		const { updateBy }: Mail = mail;
+		if (el.messaggi.updateBy === updateBy) {
 			return listaMessaggi[i];
 		}
 		return false;
@@ -60,13 +62,13 @@ export function MailComponent(props: IMailProps) {
 							<Grid item xs container direction="column" spacing={2}>
 								<Grid item xs>
 									<Typography gutterBottom variant="subtitle1">
-										{mail.username}
+										{mail.updateBy}
 									</Typography>
 									<Typography variant="body2" gutterBottom>
-										Hai parlato con {mail.username}
+										Hai parlato con {mail.updateBy}
 									</Typography>
 									<Typography variant="body2" color="textSecondary">
-										{mail.username}
+										{mail.updateBy}
 									</Typography>
 								</Grid>
 								<Grid item>
@@ -82,7 +84,7 @@ export function MailComponent(props: IMailProps) {
 								</Grid>
 							</Grid>
 							<Grid item>
-								<Typography variant="subtitle1">{mail.username}</Typography>
+								<Typography variant="subtitle1">{mail.updateBy}</Typography>
 							</Grid>
 						</Grid>
 					</Grid>

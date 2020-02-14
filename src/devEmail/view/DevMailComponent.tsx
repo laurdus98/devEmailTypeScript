@@ -3,12 +3,10 @@ import { Categoria, CategoriaEnum } from './../model/Categoria';
 import { MailComponent } from './MailComponent';
 import { Mail } from './../model/Mail';
 import { Messaggio } from './../model/Messaggio';
-import { MailAPI } from './../apis/MailAPI';
-import { CategoriaAPI } from './../apis/CategoriaAPI';
-import { MessaggiAPI } from './../apis/MessaggiAPI';
 import { Backdrop, CircularProgress, Theme, Paper, Tabs, Tab } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { IDevMailProps } from '../interfaces/IDevMailProps';
+import { MessaggioComponent } from './MessaggioComponent';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -20,29 +18,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export function DevMailComponent(props: IDevMailProps) {
-	const { logo }: IDevMailProps = props;
+	const { logo, mail, messaggio, categoria }: IDevMailProps = props;
 
-	const listEmail: Mail[] = [
-		{ ...MailAPI.mails[0], username: 'Loris98' },
-		{ ...MailAPI.mails[1], username: 'Ciao98' },
-		{ ...MailAPI.mails[2], username: 'Perfetto98' },
-		{ ...MailAPI.mails[3], username: 'EhSi98' }
-	];
+	const listEmail: Mail[] = mail;
 
-	const listMessaggi: Messaggio[] = [
-		{ ...MessaggiAPI.messaggi[0], titolo: 'Messaggio 1', messaggi: listEmail[0] },
-		{ ...MessaggiAPI.messaggi[1], titolo: 'Messaggio 2', messaggi: listEmail[1] },
-		{ ...MessaggiAPI.messaggi[2], titolo: 'Messaggio 3', messaggi: listEmail[2] },
-		{ ...MessaggiAPI.messaggi[3], titolo: 'Messaggio 3', messaggi: listEmail[3] }
-	];
+	const listMessaggi: Messaggio[] = messaggio;
 
-	const listCategoria: Categoria[] = [
-		{ ...CategoriaAPI.categorie[0], categoria: listMessaggi[0] },
-		{ ...CategoriaAPI.categorie[1], categoria: listMessaggi[1] },
-		{ ...CategoriaAPI.categorie[0], categoria: listMessaggi[2] },
-		{ ...CategoriaAPI.categorie[1], categoria: listMessaggi[1] },
-		{ ...CategoriaAPI.categorie[0], categoria: listMessaggi[1] }
-	];
+	const listCategoria: Categoria[] = categoria;
 
 	const [
 		value,
@@ -104,13 +86,23 @@ export function DevMailComponent(props: IDevMailProps) {
 					aria-label="disabled tabs example"
 				>
 					<Tab label="SocialNetwork" />
-					<Tab label="Disabilita" disabled />
+					<Tab label="Disabilita" />
 					<Tab label="Promozioni" />
 				</Tabs>
 			</Paper>
-			{/* {listCategoria.map((el: Categoria, i: any) => <CategoriaComponent categoria={el} key={i} />)} */}
-			{listEmail.map((el: Mail, i: any) => <MailComponent logo={logo} mail={el} key={i} listaMessaggi={msg} />)}
-			{/* {listMessaggi.map((el: Messaggio, i: any) => <MessaggioComponent messaggio={el} key={i} />)} */}
+			{value === 1 && listMessaggi.map((el: Messaggio, i: any) => <MessaggioComponent messaggio={el} key={i} />)}
+			{value !== 1 &&
+				listEmail
+					.filter((el: Mail, i: number, arr: Mail[]) => {
+						return (
+							[
+								...arr
+							]
+								.map((m: Mail) => m.updateBy)
+								.indexOf(el.updateBy) === i
+						);
+					})
+					.map((el: Mail, i: any) => <MailComponent logo={logo} mail={el} key={i} listaMessaggi={msg} />)}
 		</Fragment>
 	);
 }
