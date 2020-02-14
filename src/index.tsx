@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { App } from './App';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { configureStore } from './devEmail/redux/store/configureStore';
-
+import logo from './logo.svg';
 const app = (
 	<Provider store={configureStore()}>
-		<App />
+		<App logo={logo} />
 	</Provider>
 );
 
