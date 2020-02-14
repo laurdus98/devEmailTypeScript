@@ -1,4 +1,4 @@
-import { Messaggio } from './Messaggio';
+// import { Messaggio } from './Messaggio';
 
 export type Mail = {
 	id?: any;

@@ -11,7 +11,7 @@ const initState: GState<Mail> = {
 };
 
 const reducersMail: Reducer<GState<Mail>, Actions<Mail>> = (state = initState, action: Actions<Mail>) => {
-	const { type } = action;
+	const { type, payload } = action;
 
 	switch (type) {
 		case 'Success':
@@ -19,7 +19,7 @@ const reducersMail: Reducer<GState<Mail>, Actions<Mail>> = (state = initState, a
 				...state,
 				status: '200',
 				isFetching: false,
-				payload: []
+				payload
 			};
 		case 'Failure':
 			return {
@@ -33,7 +33,7 @@ const reducersMail: Reducer<GState<Mail>, Actions<Mail>> = (state = initState, a
 				isFetching: true
 			};
 		default:
-			neverReached(action);
+			neverReached<Mail>(action);
 	}
 
 	return state;

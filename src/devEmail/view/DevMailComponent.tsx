@@ -1,15 +1,14 @@
 import React, { Fragment, useState } from 'react';
-// import { CategoriaComponent } from './CategoriaComponent';
 import { Categoria, CategoriaEnum } from './../model/Categoria';
 import { MailComponent } from './MailComponent';
 import { Mail } from './../model/Mail';
-// import { MessaggioComponent } from './MessaggioComponent';
 import { Messaggio } from './../model/Messaggio';
-import { CategoriaAPI } from './../apis/CategoriaAPI';
 import { MailAPI } from './../apis/MailAPI';
+import { CategoriaAPI } from './../apis/CategoriaAPI';
 import { MessaggiAPI } from './../apis/MessaggiAPI';
 import { Backdrop, CircularProgress, Theme, Paper, Tabs, Tab } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { IDevMailProps } from '../interfaces/IDevMailProps';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -20,21 +19,21 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-interface IDevMailProps {
-	logo: any;
-}
-
 export function DevMailComponent(props: IDevMailProps) {
+	const { logo }: IDevMailProps = props;
+
 	const listEmail: Mail[] = [
-		{ ...MailAPI.mails[0], username: 'Laurdus98' },
-		{ ...MailAPI.mails[1], username: 'Alejandra98' },
-		{ ...MailAPI.mails[2], username: 'Zoe98' }
+		{ ...MailAPI.mails[0], username: 'Loris98' },
+		{ ...MailAPI.mails[1], username: 'Ciao98' },
+		{ ...MailAPI.mails[2], username: 'Perfetto98' },
+		{ ...MailAPI.mails[3], username: 'EhSi98' }
 	];
 
 	const listMessaggi: Messaggio[] = [
 		{ ...MessaggiAPI.messaggi[0], titolo: 'Messaggio 1', messaggi: listEmail[0] },
 		{ ...MessaggiAPI.messaggi[1], titolo: 'Messaggio 2', messaggi: listEmail[1] },
-		{ ...MessaggiAPI.messaggi[2], titolo: 'Messaggio 3', messaggi: listEmail[2] }
+		{ ...MessaggiAPI.messaggi[2], titolo: 'Messaggio 3', messaggi: listEmail[2] },
+		{ ...MessaggiAPI.messaggi[3], titolo: 'Messaggio 3', messaggi: listEmail[3] }
 	];
 
 	const listCategoria: Categoria[] = [
@@ -45,7 +44,6 @@ export function DevMailComponent(props: IDevMailProps) {
 		{ ...CategoriaAPI.categorie[0], categoria: listMessaggi[1] }
 	];
 
-	const { logo }: IDevMailProps = props;
 	const [
 		value,
 		setValue

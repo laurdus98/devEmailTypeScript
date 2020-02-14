@@ -1,33 +1,33 @@
-import React, { useEffect, useState, FC } from 'react';
+import React from 'react';
 import './App.css';
 import { DevMailComponent } from './devEmail/view/DevMailComponent';
 import { connect } from 'react-redux';
 import { mapState } from './devEmail/services/mapState';
 import { mapDispatch } from './devEmail/services/mapDispatch';
-import { IProps } from './devEmail/interfaces/IProps';
+import logo from './logo.svg';
 
 const connector = connect(mapState, mapDispatch);
 
-const App: FC<IProps> = ({ logo, fetchingMail }) => {
-	const [
-		isFetch,
-		setFetch
-	] = useState(false);
+export const App = () => {
+	// const [
+	// 	isFetch,
+	// 	setFetch
+	// ] = useState(false);
 
-	useEffect(
-		() => {
-			if (!isFetch) {
-				const fetching = fetchingMail();
-				console.log(fetching);
-				setFetch(true);
-			}
-		},
-		[
-			isFetch,
-			setFetch,
-			fetchingMail
-		]
-	);
+	// useEffect(
+	// 	() => {
+	// 		if (!isFetch) {
+	// 			const fetching = fetchingMail();
+	// 			console.log(fetching);
+	// 			setFetch(true);
+	// 		}
+	// 	},
+	// 	[
+	// 		isFetch,
+	// 		setFetch,
+	// 		fetchingMail
+	// 	]
+	// );
 
 	return (
 		<div className="App">
@@ -40,4 +40,4 @@ const App: FC<IProps> = ({ logo, fetchingMail }) => {
 	);
 };
 
-export default connector(App);
+connector(App);

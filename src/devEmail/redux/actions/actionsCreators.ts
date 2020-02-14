@@ -5,7 +5,9 @@ import { Mail } from '../../model/Mail';
 
 export const fetchingRequest = (): IGettingAction => {
 	return {
-		type: 'Getting'
+		type: 'Getting',
+		payload: [],
+		status: ''
 	};
 };
 
@@ -20,7 +22,8 @@ export const fetchingSuccess = <T>(json: T[]): IGettingSuccessAction<T> => {
 export const fetchingFailure = (error: string): IGettingFailureAction => {
 	return {
 		type: 'Failure',
-		status: error
+		status: error,
+		payload: []
 	};
 };
 
