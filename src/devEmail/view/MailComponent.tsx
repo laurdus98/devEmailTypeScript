@@ -91,8 +91,12 @@ export function MailComponent(props: IMailProps) {
 				</Paper>
 			</div>
 			{open ? (
-				<Grid container direction="row" justify="center" alignItems="center">
+				<Grid item xs direction="column" justify="center" alignItems="center" spacing={2}>
+            <Grid item xs>
+              <Typography gutterBottom>
 					Messaggio/i {listaMessaggi.length}
+              </Typography>
+						</Grid>
 					{listaMessaggi.map((el: Messaggio, i: any) => <MessaggioComponent messaggio={el} key={i} />)}
 				</Grid>
 			) : (

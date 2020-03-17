@@ -30,7 +30,7 @@ export function MessaggioComponent(props: IMessaggioProps) {
 					<Grid item>
 						<Avatar>{messaggio.messaggi.updateBy.substr(0, 1)}</Avatar>
 					</Grid>
-					<Grid item xs zeroMinWidth>
+					<Grid item xs>
 						<Typography noWrap>{message}</Typography>
 					</Grid>
 				</Grid>
