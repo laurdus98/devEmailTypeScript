@@ -26,6 +26,10 @@
     "serialize-javascript": "2.1.2",
     "typescript": "~3.7.2"
   },
+  "resolutions": {
+    "acorn": "7.1.1",
+    "minimist": "1.2.5"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
