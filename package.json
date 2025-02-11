@@ -23,13 +23,13 @@
     "react-scripts": "^5.0.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "serialize-javascript": "4.0.0",
+    "serialize-javascript": "6.0.2",
     "typescript": "~3.9.7",
     "websocket-extensions": "^0.1.4"
   },
   "resolutions": {
     "acorn": "8.0.1",
-    "serialize-javascript": "4.0.0",
+    "serialize-javascript": "6.0.2",
     "lodash": "^4.17.19",
     "minimist": "1.2.5"
   },
