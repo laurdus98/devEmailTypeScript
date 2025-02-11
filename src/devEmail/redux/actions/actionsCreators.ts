@@ -41,7 +41,8 @@ export function fetching<T>(pathName: string) {
 			let json = await response.json();
 			return dispatch(fetchingSuccess<T>(json));
 		} catch (error) {
-			return dispatch(fetchingFailure(error));
-		}
+            const errorMessage = error instanceof Error ? error.message : String(error);
+            return dispatch(fetchingFailure(errorMessage));
+        }
 	};
 }

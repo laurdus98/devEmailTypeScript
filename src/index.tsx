@@ -6,8 +6,10 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { configureStore } from './devEmail/redux/store/configureStore';
 import logo from './logo.svg';
+const store = configureStore();
+
 const app = (
-	<Provider store={configureStore()}>
+	<Provider store={store}>
 		<App logo={logo} />
 	</Provider>
 );
